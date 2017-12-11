@@ -26,7 +26,7 @@ public class AccountActivity extends AppCompatActivity {
     private TextView textView0;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private String everyoneName = "";
+    private String everyoneName = " ";
     private String uid;
 
     private FirebaseDatabase database;
@@ -70,6 +70,7 @@ public class AccountActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String name = etName.getText().toString();
                 String surname = etSurname.getText().toString();
                 myRef.child(uid).child("Name").setValue(name);
@@ -83,7 +84,7 @@ public class AccountActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                everyoneName = "";
+                everyoneName = " ";
                 for(DataSnapshot childData : dataSnapshot.getChildren()){
                     everyoneName += childData.child("Name").getValue().toString() + " " + childData.child("Surname").getValue().toString() + "\n";
                 }
